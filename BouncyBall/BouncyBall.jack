@@ -1,0 +1,78 @@
+//Fadhar Castillo
+//Project 9: Bouncy Ball Jack program
+/** Implements a ball that will be displayed on the screen
+*   maintaining the Square class convention to allow ease of use
+*/
+class BouncyBall
+{
+    field int x, y, r, xDir, yDir;
+    //Constructor: Creates a new Ball with given parameters
+    constructor BouncyBall new(int xPos, int yPos, int radius)
+    {
+        let x = xPos;
+        let y = yPos;
+        let r = radius;
+        let xDir = 5;
+        let yDir = 5;
+        return this;
+    }
+
+    //Disposes the ball
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+    //Draw the ball on screen
+    method void draw()
+    {
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, r);
+        return;
+    }
+
+    //Erases the ball from the screen
+    method void erase()
+    {
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, r);
+        return;
+    }
+    //Moves the ball
+    method void move()
+    {
+        var int leftCenter;
+        var int rightCenter;
+        var int topCenter;
+        var int bottomCenter;
+        let leftCenter = x-r;
+        let rightCenter = x+r;
+        let topCenter = y-r;
+        let bottomCenter = y+r;
+        do erase();
+        if((leftCenter < 5) | (rightCenter > 500))
+        {
+            do xBounce();
+        }
+        if((topCenter < 5) | (bottomCenter > 250))
+        {
+            do yBounce();
+        }
+        let x = x + xDir;
+        let y = y + yDir;
+        do draw();
+        return;
+    }
+    //Changes the x direction of the ball
+    method void xBounce()
+    {
+        let xDir = -xDir;
+        return;
+    }
+    //Changes the y direction of the ball
+    method void yBounce()
+    {
+        let yDir = -yDir;
+        return;
+    }
+}

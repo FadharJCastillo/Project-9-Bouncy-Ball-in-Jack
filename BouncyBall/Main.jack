@@ -1,0 +1,26 @@
+//Fadhar Castillo
+//Project 9: Bouncy Ball Jack programs
+class Main {
+    function void main(){
+        var BouncyBall ball;
+        var char key;
+        var boolean exit;
+        var int xStart, yStart, radius;
+        let xStart = 100;
+        let yStart = 50;
+        let radius = 15;
+        let exit = false;
+
+        let ball = BouncyBall.new(xStart, yStart, radius);
+        while (~exit)
+        {
+            let key = Keyboard.keyPressed();
+            if(key = 88) { let exit = true; }
+
+            do ball.move();
+        }
+        do ball.dispose();
+        
+        return;
+    }
+}
